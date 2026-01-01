@@ -1,0 +1,28 @@
+---
+title: Notas LFMMyOC 
+---
+
+Esta página está hecha con el propósito de archivar escritos y notas de los temas vistos en la licenciatura en física y matemáticas, en la Esucela Superior de Física y Matemáticas del Instituto Politécnico Nacional. Estas son notas escritas por estudiantes de la licenciatura con la intención de servir como apoyo. Sin embargo, las notas y la página no son exclusivas para esto, también se pueden encontrar notas personales o escritos (alucinaciones) fuera de los temas de la licenciatura.
+
+__Advertencia:__ Las notas pueden tener varios errores. No están hechas para suplir la labor de los profesores ni la de los libros presentes en la bibliografía de los planes de estudio.
+
+Puede consultar los archivos de $\LaTeX$ para algunos documentos en el [repositorio de GitHub](https://github.com/3Inaba/lfmMnotas)
+
+---
+
+## Páginas disponibles
+- De la LFM:
+    - Álgebra:
+        - [[A2|Curso de Álgebra II]]
+        - [[A4|Curso de Álgebra IV]]
+    - Cálculo:
+        - [[C4|Curso de Cálculo IV]]
+
+---
+
+## Notas de los cursos:
+
+|Curso/Tópico       |Documento                              |Autor              |Estado                             |
+|-------------------|---------------------------------------|-------------------|-----------------------------------|
+|Álgebra II         |[![[notasA2.png | 150]]](notas.pdf)    |Adiel              |Completadas (sujetas a cambios)    |
+|Álgebra IV         |[![[notasA4.png | 150]]](notasA4.pdf)  |Adiel              |Incompletas                        |
