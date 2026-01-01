@@ -6,7 +6,9 @@ Esta página está hecha con el propósito de archivar escritos y notas de los t
 
 __Advertencia:__ Las notas pueden tener varios errores. No están hechas para suplir la labor de los profesores ni la de los libros presentes en la bibliografía de los planes de estudio.
 
-Puede consultar los archivos de $\LaTeX$ para algunos documentos en el [repositorio de GitHub](https://github.com/3Inaba/lfmMnotas)
+Puede consultar los archivos de $\LaTeX$ para algunos documentos en el [repositorio de GitHub](https://github.com/3Inaba/lfmMnotas).
+
+Aportes, sugerencias o comentarios son bienvenidos: cradgonzalezgtz@gmail.com
 
 ---
 
