@@ -2,7 +2,7 @@
 title: Notas LFMMyOC 
 ---
 
-Esta página está hecha con el propósito de archivar escritos y notas de los temas vistos en la licenciatura en física y matemáticas, en la Esucela Superior de Física y Matemáticas del Instituto Politécnico Nacional. Estas son notas escritas por estudiantes de la licenciatura con la intención de servir como apoyo. Sin embargo, las notas y la página no son exclusivas para esto, también se pueden encontrar notas personales o escritos (alucinaciones) fuera de los temas de la licenciatura.
+Esta página está hecha con el propósito de archivar escritos y notas de los temas vistos en la licenciatura en física y matemáticas, en la Escuela Superior de Física y Matemáticas del Instituto Politécnico Nacional. Estas son notas escritas por estudiantes de la licenciatura con la intención de servir como apoyo. Sin embargo, las notas y la página no son exclusivas para esto, también se pueden encontrar notas personales o escritos (alucinaciones) fuera de los temas de la licenciatura.
 
 __Advertencia:__ Las notas pueden tener varios errores. No están hechas para suplir la labor de los profesores ni la de los libros presentes en la bibliografía de los planes de estudio.
 
@@ -26,5 +26,5 @@ Aportes, sugerencias o comentarios son bienvenidos: cradgonzalezgtz@gmail.com
 
 |Curso/Tópico       |Documento                              |Autor              |Estado                             |
 |-------------------|---------------------------------------|-------------------|-----------------------------------|
-|Álgebra II         |[![[notasA2.png | 150]]](notas.pdf)    |Adiel              |Completadas (sujetas a cambios)    |
-|Álgebra IV         |[![[notasA4.png | 150]]](notasA4.pdf)  |Adiel              |Incompletas                        |
+|Álgebra II         |[![[notasA2.png | 150]]](notas.pdf)    |3Inaba             |Completadas (sujetas a cambios)    |
+|Álgebra IV         |[![[notasA4.png | 150]]](notasA4.pdf)  |3Inaba             |Incompletas                        |
