@@ -22,9 +22,9 @@ Aportes, sugerencias o comentarios son bienvenidos: cradgonzalezgtz@gmail.com
 
 ---
 
-## Notas de los cursos:
+## Notas de los cursos
 
 |Curso/Tópico       |Documento                              |Autor              |Estado                             |
 |-------------------|---------------------------------------|-------------------|-----------------------------------|
-|Álgebra II         |[![[notasA2.png | 150]]](notas.pdf)    |3Inaba             |Completadas (sujetas a cambios)    |
+|Álgebra II         |[![[notasA2.png | 150]]](notasA2.pdf)  |3Inaba             |Completadas (sujetas a cambios)    |
 |Álgebra IV         |[![[notasA4.png | 150]]](notasA4.pdf)  |3Inaba             |Incompletas                        |

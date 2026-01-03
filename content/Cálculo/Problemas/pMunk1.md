@@ -1,5 +1,7 @@
 ---
 title: Problema del libro de Munkres §12, 2
+author: 3Inaba
+date: 2025-10-26
 tag:
     - Cálculo
     - Integración en varias variables
