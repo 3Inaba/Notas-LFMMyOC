@@ -4,8 +4,8 @@ tags:
     - Álgebra
     - Cálculo
     - Teoría de conjuntos
-draft: true
+draft: false 
 ---
 
 Soluciones a problemas varios de matemáticas:
-    -
+- [[cinvestav.pdf|Problemas CINVESTAV]]

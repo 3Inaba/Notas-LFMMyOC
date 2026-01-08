@@ -8,7 +8,7 @@ __Advertencia:__ Las notas pueden tener varios errores. No están hechas para su
 
 Puede consultar los archivos de $\LaTeX$ para algunos documentos en el [repositorio de GitHub](https://github.com/3Inaba/lfmMnotas).
 
-Aportes, sugerencias o comentarios son bienvenidos: cradgonzalezgtz@gmail.com
+Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com 
 
 ---
 
@@ -19,6 +19,14 @@ Aportes, sugerencias o comentarios son bienvenidos: cradgonzalezgtz@gmail.com
         - [[A4|Curso de Álgebra IV]]
     - Cálculo:
         - [[C4|Curso de Cálculo IV]]
+
+- Fuera de la LFM:
+    - [[pv|Problemas varios]]
+
+- Personales:
+    - 3Inaba:
+        - [[escritos|Escritos]]
+        - [[myln|Mangas y LN]]
 
 ---
 
