@@ -7,5 +7,5 @@ I hope that whoever reads these texts finds them enjoyable, as they've been made
 
 ---
 - [[Calc_IV.pdf|Solved Problems of Calculus IV]]
-- [[A_III.pdf|Algebra III, Proyect]]]
+- [[A_III.pdf|Algebra III, Proyect]]
 ---
