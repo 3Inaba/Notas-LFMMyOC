@@ -10,3 +10,7 @@ tag:
 Here are some books on russian or to learn russian.
 
 
+
+|Cover|Title|Author|
+|------|------|-----|
+|[![[teach.jpg | 125]]](https://amzn.asia/d/9n7frmJ) | Daphne M. West |
