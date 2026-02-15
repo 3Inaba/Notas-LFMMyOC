@@ -29,10 +29,11 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
 - Personales:
     - 3Inaba:
         - [[escritos|Escritos]]
-        - [[myln|Mangas y LN]]
+        - [[jpthings|JP Stuff]]
         - [[libros|Libros de interés personal]]
     - Santiago:
         - [[Writings|Writings]]
+    - [[col|Colaboraciones]]
 
 ---
 

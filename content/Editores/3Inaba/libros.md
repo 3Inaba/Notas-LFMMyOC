@@ -1,8 +1,8 @@
 ---
-title: Libros de interés personal
+title: Libros
 ---
 
-Algunos de estos libros sí tienen que ver con matemáticas pero me parecieron buenos o me gustaron.
+Estos son libos de interés personal.
 
 |Enlace|Título|Autor|Comentario|
 |------|------|-----|----------|
