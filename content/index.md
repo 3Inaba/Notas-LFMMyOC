@@ -16,9 +16,12 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
 - De la LFM:
     - Álgebra:
         - [[A2|Curso de Álgebra II]]
+        - [[A3|Curso de Álgebra III]]
         - [[A4|Curso de Álgebra IV]]
     - Cálculo:
         - [[C4|Curso de Cálculo IV]]
+    - Geometría diferencial:
+        - [[GD1|Curso de Geometría Diferencial I]]
 
 - Fuera de la LFM:
     - [[pv|Problemas varios]]
@@ -27,6 +30,7 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
     - 3Inaba:
         - [[escritos|Escritos]]
         - [[myln|Mangas y LN]]
+        - [[libros|Libros de interés personal]]
     - Santiago:
         - [[Writings|Writings]]
 
