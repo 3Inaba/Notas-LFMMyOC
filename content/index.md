@@ -30,12 +30,12 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
     - 3Inaba:
         - [[escritos|Escritos]]
         - [[jpthings|JP Stuff]]
-        - [[libros|Libros de interés personal]]
+        - [[libros|Libros]]
     - Santiago:
         - [[Writings|Writings]]
     - [[col|Colaboraciones]]
 
----
+    ---
 
 ## Escritos sobre los cursos
 
