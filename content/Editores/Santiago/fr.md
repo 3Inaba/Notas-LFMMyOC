@@ -3,10 +3,10 @@ title: French-Français
 author: Santiago
 date: 2026-02-13
 tag: 
-   -French
-   -Books
-   -Philosophy
-   -Music
+   - French
+   - Books
+   - Philosophy
+   - Music
 ---
 
 Here are some books in french or to learn french. I think it's a pretty language altough a bit dead.
