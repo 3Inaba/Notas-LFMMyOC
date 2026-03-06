@@ -1,5 +1,5 @@
 ---
-title: Books in/for Russian language
+title: Russian-Pусский
 author: Santiago
 date: 2026-02-13
 tag: 
