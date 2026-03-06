@@ -3,8 +3,8 @@ title: Probability
 author: Santiago
 date: 2026-03-04
 tag:
-   -Probability
-   -Measure Theory
+   - Probability
+   - Measure Theory
 draft: false
 ---
 

@@ -3,11 +3,11 @@ title: Writings
 draft: false
 
 tag:
-   -Calculus
-   -Lineal algebra
-   -Mathemathical analysis
-   -Probability 
-   -Modern Algebra
+   - Calculus
+   - Lineal algebra
+   - Mathemathical analysis
+   - Probability 
+   - Modern Algebra
 ---
 
 Some texts I've written. I'm trying to keep making more :)

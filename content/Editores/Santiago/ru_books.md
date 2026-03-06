@@ -3,8 +3,8 @@ title: Russian-Pусский
 author: Santiago
 date: 2026-02-13
 tag: 
-   -Russian
-   -Books
+   - Russian
+   - Books
 ---
 
 Here are some books on russian or to learn russian.
