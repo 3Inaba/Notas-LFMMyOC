@@ -1,6 +1,12 @@
 ---
 Title: Other Interests
 draft: false
+
+tag:
+   -Photography
+   -Paintings
+   -Art
+   -Music
 ---
 
 Here are some material on subjects I like outside mathematics. 
