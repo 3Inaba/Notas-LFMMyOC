@@ -33,6 +33,10 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
         - [[libros|Libros]]
     - Santiago:
         - [[Writings|Writings]]
+        - [[prob|Probability]]
+        - [[ru_books|Russian-Pусский]]
+        - [[fr|French-Français]]
+        - [[Other|Other]]
     - [[col|Colaboraciones]]
 
     ---
