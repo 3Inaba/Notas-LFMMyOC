@@ -13,5 +13,5 @@ Here are some books on russian or to learn russian. I recommend to read the firs
 |Cover|Title|Author|
 |------|------|-----|
 |[![[teach.jpg | 125]]](teach.pdf) |Teach Yourself Russian |Daphne M. West |
-|[![[ass.jpg | 125]]](assimil.pdf)|Assimil: Russian|Виктория Мельникова Сюше|
-|[![[lex.jpeg | 125]]](lexic.pdf) |Русская лексика для жизни. Теория и практика|Вероника Войсковская и Екатерина Гуськова|
+|[![[assim.jpg | 125]]](assimil.pdf)|Assimil: Russian|Виктория Мельникова Сюше|
+|[![[leksika.jpg | 125]]](lexic.pdf) |Русская лексика для жизни. Теория и практика|Вероника Войсковская и Екатерина Гуськова|
