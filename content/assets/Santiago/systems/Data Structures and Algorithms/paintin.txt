@@ -1,0 +1,111 @@
+penup
+goto, -350, -150, 1, black
+pendown
+beginfill, saddlebrown
+goto, 350, -150, 1, saddlebrown
+goto, 350, -210, 1, saddlebrown
+goto, -350, -210, 1, saddlebrown
+goto, -350, -150, 1, saddlebrown
+endfill
+penup
+goto, -300, -90, 1, black
+pendown
+beginfill, tan
+goto, -150, -60, 1, tan
+goto, 0, -55, 1, tan
+goto, 150, -60, 1, tan
+goto, 250, -50, 1, tan
+goto, 250, -90, 1, tan
+goto, -300, -90, 1, tan
+endfill
+penup
+goto, -220, -60, 1, black
+pendown
+beginfill, wheat
+goto, -180, -30, 1, wheat
+goto, -140, -55, 1, wheat
+goto, -100, -25, 1, wheat
+goto, -60, -55, 1, wheat
+goto, -20, -30, 1, wheat
+goto, 20, -60, 1, wheat
+goto, -220, -85, 1, wheat
+endfill
+penup
+goto, -30, -70, 1, black
+pendown
+beginfill, tan
+goto, 70, -60, 1, tan
+goto, 150, -65, 1, tan
+goto, 210, -55, 1, tan
+goto, 250, -60, 1, tan
+goto, 250, -95, 1, tan
+goto, -30, -95, 1, tan
+endfill
+penup
+goto, -230, -20, 1, black
+pendown
+beginfill, peachpuff
+circle, 30, 1, peachpuff
+endfill
+penup
+goto, -120, -50, 1, black
+pendown
+beginfill, saddlebrown
+goto, -90, -20, 1, saddlebrown
+goto, -60, -55, 1, saddlebrown
+goto, -100, -95, 1, saddlebrown
+endfill
+penup
+goto, 90, -90, 1, black
+pendown
+beginfill, dimgray
+goto, 110, -55, 1, dimgray
+goto, 150, -50, 1, dimgray
+goto, 180, -65, 1, dimgray
+goto, 190, -95, 1, dimgray
+endfill
+penup
+goto, -320, 20, 1, black
+pendown
+beginfill, darkslategray
+circle, 25, 1, darkslategray
+endfill
+penup
+goto, -320, -10, 1, black
+pendown
+beginfill, black
+goto, -340, -60, 1, black
+goto, -300, -70, 1, black
+goto, -280, -50, 1, black
+goto, -290, -10, 1, black
+endfill
+penup
+goto, -260, 30, 1, black
+pendown
+beginfill, darkslategray
+circle, 22, 1, darkslategray
+endfill
+penup
+goto, -260, 0, 1, black
+pendown
+beginfill, black
+goto, -285, -55, 1, black
+goto, -250, -68, 1, black
+goto, -225, -45, 1, black
+goto, -235, 0, 1, black
+endfill
+penup
+goto, -200, 40, 1, black
+pendown
+beginfill, gray
+circle, 20, 1, gray
+endfill
+penup
+goto, -200, 10, 1, black
+pendown
+beginfill, black
+goto, -222, -50, 1, black
+goto, -190, -62, 1, black
+goto, -168, -40, 1, black
+goto, -178, 10, 1, black
+endfill

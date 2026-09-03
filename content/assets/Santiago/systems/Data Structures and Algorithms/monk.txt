@@ -1,0 +1,52 @@
+beginfill, brown
+circle, 60, 1, brown
+endfill
+penup
+goto, -50, 40, 1, brown
+pendown
+beginfill, brown
+circle, 20, 1, brown
+endfill
+beginfill, pink
+circle, 10, 1, pink
+endfill
+penup
+goto, 50, 40, 1, brown
+pendown
+beginfill, brown
+circle, 20, 1, brown
+endfill
+beginfill, pink
+circle, 10, 1, pink
+endfill
+penup
+goto, 0, -30, 1, brown
+pendown
+beginfill, tan
+circle, 35, 1, tan
+endfill
+penup
+goto, -20, 20, 1, brown
+pendown
+beginfill, black
+circle, 6, 1, black
+endfill
+penup
+goto, 20, 20, 1, brown
+pendown
+beginfill, black
+circle, 6, 1, black
+endfill
+penup
+goto, 0, 5, 1, brown
+pendown
+beginfill, black
+goto, -10, 15, 1, black
+goto, 10, 15, 1, black
+goto, 0, 5, 1, black
+endfill
+penup
+goto, -15, -10, 1, brown
+pendown
+goto, 0, -20, 1, black
+goto, 15, -10, 1, black
