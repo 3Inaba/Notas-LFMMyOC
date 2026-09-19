@@ -2,6 +2,6 @@
 title: Santiago
 ---
 
-Any weird things that I may do
+Some projects and personal interests. 
 
 
