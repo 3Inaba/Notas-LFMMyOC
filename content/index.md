@@ -32,12 +32,12 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
         - [[jpthings|JP Stuff]]
         - [[libros|Libros]]
     - Santiago:
-	- [[sys_eng|Systems Engineering]]
+        - [[Editores/Santiago/systems/|Systems Engineering]]
         - [[Writings|Writings]]
 <<<<<<< HEAD
 =======
         - [[prob|Probability]]
-        - [[ru_books|Russian-Pусский]]
+        - [[ru|Russian-Pусский]]
         - [[fr|French-Français]]
         - [[Other|Other]]
 >>>>>>> 73d1c606abcdf912db193f45791bedfe85e39dbe
