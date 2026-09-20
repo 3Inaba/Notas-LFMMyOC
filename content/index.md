@@ -25,6 +25,7 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
 
 - Fuera de la LFM:
     - [[pv|Problemas varios]]
+    - [[anillosnya.pdf | Equivalencia entre artinianidad y noetherianidad.]]
 
 - Personales:
     - 3Inaba:
@@ -34,16 +35,13 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
     - Santiago:
         - [[Editores/Santiago/systems/|Systems Engineering]]
         - [[Writings|Writings]]
-<<<<<<< HEAD
-=======
         - [[prob|Probability]]
         - [[ru|Russian-Pусский]]
         - [[fr|French-Français]]
         - [[Other|Other]]
->>>>>>> 73d1c606abcdf912db193f45791bedfe85e39dbe
     - [[col|Colaboraciones]]
 
-    ---
+---
 
 ## Escritos sobre los cursos
 
