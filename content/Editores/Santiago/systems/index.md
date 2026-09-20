@@ -1,5 +1,5 @@
 ---
-Title: Systems Engineering
+title: Systems Engineering
 author: Santiago
 date: 2026-09-19
 draft: false
