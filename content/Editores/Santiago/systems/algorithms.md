@@ -74,4 +74,58 @@ $$
 $$
 
 The complexity of this algorithms is $O(n)$ for the best case (already sorted) and $O(n^2)$ for the average and worst cases.
- 
+
+In the **RAM** (Random-Access Machine)  model each instruction or data access takes a constant amount
+of time. 
+
+## Merge(A, p, q, r)
+
+$$ \textbf{MERGE}(A, p, q, r): \\$$
+$$
+\begin{array}{ll}
+1 & n_L = q - p + 1 \quad \text{// length of } A[p \dots q] \\
+2 & n_R = r - q \quad \text{// length of } A[q + 1 \dots r] \\
+3 & \text{let } L[0 \dots n_L - 1] \text{ and } R[0 \dots n_R - 1] \text{ be new arrays} \\
+4 & \textbf{for } i = 0 \textbf{ to } n_L - 1 \quad \text{// copy } A[p \dots q] \text{ into } L[0 \dots n_L - 1] \\
+5 & \quad L[i] = A[p + i] \\
+6 & \textbf{for } j = 0 \textbf{ to } n_R - 1 \quad \text{// copy } A[q + 1 \dots r] \text{ into } R[0 \dots n_R - 1] \\
+7 & \quad R[j] = A[q + j + 1] \\
+8 & i = 0 \quad \text{// } i \text{ indexes the smallest remaining element in } L \\
+9 & j = 0 \quad \text{// } j \text{ indexes the smallest remaining element in } R \\
+10 & k = p \quad \text{// } k \text{ indexes the location in } A \text{ to fill} \\
+11 & \text{// As long as each array contains an unmerged element, copy the smallest back.} \\
+12 & \textbf{while } i < n_L \textbf{ and } j < n_R \\
+13 & \quad \textbf{if } L[i] \le R[j] \\
+14 & \quad \quad A[k] = L[i] \\
+15 & \quad \quad i = i + 1 \\
+16 & \quad \textbf{else } A[k] = R[j] \\
+17 & \quad \quad j = j + 1 \\
+18 & \quad k = k + 1 \\
+19 & \text{// Copy the remaining elements of the other array to the end of } A[p \dots r]. \\
+20 & \textbf{while } i < n_L \\
+21 & \quad A[k] = L[i] \\
+22 & \quad i = i + 1 \\
+23 & \quad k = k + 1 \\
+24 & \textbf{while } j < n_R \\
+25 & \quad A[k] = R[j] \\
+26 & \quad j = j + 1 \\
+27 & \quad k = k + 1
+\end{array}
+$$
+
+## Merge-sort(A, p, r)
+$$\textbf{MERGE-SORT}(A, p, r): \\$$
+$$
+\begin{array}{ll}
+1 & \textbf{if } p \ge r \quad \text{// zero or one element?} \\
+2 & \quad \textbf{return} \\
+3 & q = \lfloor (p + r) / 2 \rfloor \quad \text{// midpoint of } A[p \dots r] \\
+4 & \textbf{MERGE-SORT}(A, p, q) \quad \text{// recursively sort } A[p \dots q] \\
+5 & \textbf{MERGE-SORT}(A, q + 1, r) \quad \text{// recursively sort } A[q + 1 \dots r] \\
+6 & \text{// Merge } A[p \dots q] \text{ and } A[q + 1 \dots r] \text{ into } A[p \dots r]. \\
+7 & \textbf{MERGE}(A, p, q, r)
+\end{array}
+$$
+
+
+The complexity of this algorithm for every case is $O(n \, \text{log} \, n)$, i.e., the time complexity is $\Theta(n \, \text{log} \, n)$ for every case.
