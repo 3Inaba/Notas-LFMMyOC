@@ -17,7 +17,8 @@ They're more unstructured and don't have a lot of explanation, unlike the rest o
 which is an attemp to give concise and clear information (stopping all the yap and unnecessary text in cs books).
 
 
-These are mainly notes of the 'Introduction to Algorithms. Fourth Edition', along with the Python implementation and 
+These are mainly notes of the book *Introduction to algorithms* by Cormen, T. H., Leiserson, C. E., Rivest, R. L., \& Stein, C. (2022).  (4th ed.). MIT Press.
+, along with the Python implementation and 
 some other things. 
 
 The repository with the .py files can be found [[https://github.com/Santiago-l-l-l/Introduction-to-Algorithms
@@ -25,7 +26,9 @@ The repository with the .py files can be found [[https://github.com/Santiago-l-l
 
 The notes assume some abstract thinking and mathemathical background. 
 
-Before anything, here are some basic **definitions** 
+Before anything, here are some basic definitions on 
+
+## Big O Notation
 
 $$
 \begin{aligned}
@@ -36,6 +39,15 @@ $$
 \textbf{Little-omega } \omega(g(n)) &= \{ f(n) : \forall c > 0, \exists n_0 > 0 \text{ such that } 0 \le c \cdot g(n) < f(n) \text{ for all } n \ge n_0 \}
 \end{aligned}
 $$
+
+$O$-notation provides an asymptotic upper bound on a function, $\Omega$-notation an asymptotic lower bound
+and $\Theta$-notation an asymptotic tight bound.
+
+Moreover, we have the following, clear
+
+## Theorem 1.1
+
+For any two functions $f(n), \, g(n)$. $f(n)= \, \Theta(g(n)) \, \iff \, f(n)=O(g(n))$ and $f(n)= \Omega(g(n))$
 
 
 
@@ -54,6 +66,31 @@ $|f(x) \le k \, |g(x)|$, $\forall x \in V_{ \delta} (x_0)$.
 It is said that $f$ is $o(g(x))$ when $x \to \infty$ if $\forall k>0, \, \exists \, \delta \in \mathbb{R}^+$ >
 $|f(x) \le k \, |g(x)|$, $\forall x \, : \, |x| > \delta$.
 
+$$\\$$
+
+## Recurrence
+
+A **recurrence** is an equation (or inequality) that describes a function in terms of its value on other, typically smaller, 
+arguments. It contains two or more cases. If a case involves the recursive invocation of the function on different inputs, 
+it's a **recursive case**, if not, it's a **base case**. 
+
+It is **well defined** if exists at least one function that satisfies it, and **ill defined** otherwise.
+
+A recurrence $T(n)$ is **algorithmic** if, for every sufficiently large *threshold* constant $n_0>0$, 
+$\forall \, \, n<n_0$, $T(n)=\Theta(1)$ and $\forall \, \, n \ge n_0 $, every path of recursion 
+terminates in a defined base case within a finite number of recursive invocations.
+
+Some methodsfor solving recurrences are:
+
+## Substitution Method
+
+
+
+## Recursion-tree Method
+
+## Master Method
+
+##Akra-Bazzi Method
 
 
 ## Insertion-Sort (A,n)
@@ -129,3 +166,46 @@ $$
 
 
 The complexity of this algorithm for every case is $O(n \, \text{log} \, n)$, i.e., the time complexity is $\Theta(n \, \text{log} \, n)$ for every case.
+
+## Bubblesort (A, n)
+
+$$\textbf{BUBBLESORT}(A, n): \\ $$
+$$
+\begin{array}{ll}
+1 & \textbf{for } i = 1 \textbf{ to } n - 1 \\
+2 & \quad \textbf{for } j = n \textbf{ downto } i + 1 \\
+3 & \quad \quad \textbf{if } A[j] < A[j - 1] \\
+4 & \quad \quad \quad \text{exchange } A[j] \text{ with } A[j - 1]
+\end{array}
+$$
+
+The worst-case time complexity is $O(n^2)$, and the best-case is $\Omega(n^2)$, so $\Theta(n^2)$.
+
+## Matrix-Multiply-Recursive
+
+$$\textbf{MATRIX-MULTIPLY-RECURSIVE}(A, B, C, n): \\$$
+$$
+\begin{array}{ll}
+1 & \textbf{if } n == 1 \\
+2 & \quad \text{// Base case.} \\
+3 & \quad c_{11} = c_{11} + a_{11} \cdot b_{11} \\
+4 & \quad \textbf{return} \\
+5 & \text{// Divide.} \\
+6 & \text{partition } A, B, \text{ and } C \text{ into } n/2 \times n/2 \text{ submatrices} \\
+  & A_{11}, A_{12}, A_{21}, A_{22}; \; B_{11}, B_{12}, B_{21}, B_{22}; \\
+  & \text{and } C_{11}, C_{12}, C_{21}, C_{22}, \text{ respectively} \\
+7 & \text{// Conquer.} \\
+8 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{11}, B_{11}, C_{11}, n/2) \\
+9 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{11}, B_{12}, C_{12}, n/2) \\
+10 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{21}, B_{11}, C_{21}, n/2) \\
+11 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{21}, B_{12}, C_{22}, n/2) \\
+12 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{12}, B_{21}, C_{11}, n/2) \\
+13 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{12}, B_{22}, C_{12}, n/2) \\
+14 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{22}, B_{21}, C_{21}, n/2) \\
+15 & \textbf{MATRIX-MULTIPLY-RECURSIVE}(A_{22}, B_{22}, C_{22}, n/2)
+\end{array}
+$$
+
+Since there are 8 recursive calls, we have a recurrence of the form $T(n)= 8T(\frac{n}{2}) + \Theta(1)$ 
+for the running time of Matrix-Multiply-Recursive. Whose solution is $T(n)=\Theta(n^3)$.
+
