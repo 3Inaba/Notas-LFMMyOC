@@ -14,4 +14,3 @@ Estos son todos los escritos subidos a esta página que he hecho de manera indiv
 - [[pcort1|Raíz de un polinomio de grado 3 es una cortadura]]
 - [[pcort2|La suma de la raíz de dos y su inverso multiplicativo es mayor a 2]]
 - [[pMunk1|Problema del libro de Munkres, S12,2]]
-- [[yuuka.pdf|Yuuka's notes on: FOUNDATIONS OF MATHEMATICS]]. Este tiene el propósito de ser un registro de mis estudios en los fundamentos de las matemáticas, i.e., lógica, categorías, conjuntos, tipos, filosofía de las matemáticas, etc. Las referencias probablemente se encontrarán en [[libros|libros]]. Yo voy a ser el Bourbaki si se hubiera ido a tres extras de física.
