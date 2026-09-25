@@ -30,7 +30,8 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
 - Personales:
     - 3Inaba:
         - [[escritos|Escritos]]
-        - [[jpthings|JP Stuff]]
+        - [[animanga|Animanga]]
+        - [[ritmo|Juegos de ritmo]]
         - [[libros|Libros]]
     - Santiago:
         - [[Editores/Santiago/systems/|Systems Engineering]]
@@ -48,7 +49,7 @@ Aportes, sugerencias o comentarios son bienvenidos: inabapinabapinaba@gmail.com
 |Curso/Tópico       |Documento                              |Autor              |Estado                             |
 |-------------------|---------------------------------------|-------------------|-----------------------------------|
 |Álgebra II         |[![[notasA2.png | 150]]](notasA2.pdf)  |3Inaba             |Completadas (sujetas a cambios)    |
-|Álgebra IV         |[![[notasA4.png | 150]]](notasA4.pdf)  |3Inaba             |Incompletas                        |
+|Álgebra IV         |[![[notasA4.png | 150]]](notasA4.pdf)  |3Inaba             |Comenzando         |
 |Cálculo IV         |[![[soleecionario.png | 150]]](assets/Santiago/Writings/Calc_IV.pdf)    |Santiago             ||
 |Álgebra III        |[![[projabelardo.png | 150]]](assets/Santiago/Writings/A_III.pdf)       |Santiago             ||
 |Geometría diferencial I|[![[geodifI.png | 150]]](geodifI.pdf)  |3Inaba, Santiago, Hensito  |Empezando|
