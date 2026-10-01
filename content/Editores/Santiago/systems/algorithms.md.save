@@ -213,3 +213,46 @@ $$
 Since there are 8 recursive calls, we have a recurrence of the form $T(n)= 8T(\frac{n}{2}) + \Theta(1)$ 
 for the running time of Matrix-Multiply-Recursive. Whose solution is $T(n)=\Theta(n^3)$.
 
+## Strassen's Algorithm
+
+THe recurrence for the running time of this algorithm is $T(n)=7T(\frac{n}{2})+\Theta(n^2)$ whose 
+solution is $T(n)=\Theta(n^{\text{log}7})=\Theta(n^{2.81})$
+
+$$\textbf{STRASSEN}(A, B, C, n): \\$$
+$$
+\begin{array}{ll}
+1 & \textbf{if } n == 1 \\
+2 & \quad \text{// Base case.} \\
+3 & \quad c_{11} = c_{11} + a_{11} \cdot b_{11} \\
+4 & \quad \textbf{return} \\
+5 & \text{// Divide.} \\
+6 & \text{partition } A, B, \text{ and } C \text{ into } n/2 \times n/2 \text{ submatrices} \\
+  & A_{11}, A_{12}, A_{21}, A_{22}; \; B_{11}, B_{12}, B_{21}, B_{22}; \\
+  & \text{and } C_{11}, C_{12}, C_{21}, C_{22}, \text{ respectively} \\
+7 & \text{// Create temporary matrices for Strassen's combinations.} \\
+8 & S_1 = B_{12} - B_{22} \\
+9 & S_2 = A_{11} + A_{12} \\
+10 & S_3 = A_{21} + A_{22} \\
+11 & S_4 = B_{21} - B_{11} \\
+12 & S_5 = A_{11} + A_{22} \\
+13 & S_6 = B_{11} + B_{22} \\
+14 & S_7 = A_{12} - A_{22} \\
+15 & S_8 = B_{21} + B_{22} \\
+16 & S_9 = A_{11} - A_{21} \\
+17 & S_{10} = B_{11} + B_{12} \\
+18 & \text{// Conquer - Create 7 matrices for recursive calls.} \\
+19 & \text{allocate } P_1, P_2, P_3, P_4, P_5, P_6, P_7 \text{ as new } n/2 \times n/2 \text{ matrices initialized to zero} \\
+20 & \textbf{STRASSEN}(A_{11}, S_1, P_1, n/2) \\
+21 & \textbf{STRASSEN}(S_2, B_{22}, P_2, n/2) \\
+22 & \textbf{STRASSEN}(S_3, B_{11}, P_3, n/2) \\
+23 & \textbf{STRASSEN}(A_{22}, S_4, P_4, n/2) \\
+24 & \textbf{STRASSEN}(S_5, S_6, P_5, n/2) \\
+25 & \textbf{STRASSEN}(S_7, S_8, P_6, n/2) \\
+26 & \textbf{STRASSEN}(S_9, S_{10}, P_7, n/2) \\
+27 & \text{// Combine - update C quadrants using linear combinations of P.} \\
+28 & C_{11} = C_{11} + P_5 + P_4 - P_2 + P_6 \\
+29 & C_{12} = C_{12} + P_1 + P_2 \\
+30 & C_{21} = C_{21} + P_3 + P_4 \\
+31 & C_{22} = C_{22} + P_5 + P_1 - P_3 - P_7
+\end{array}
+$$
