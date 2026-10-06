@@ -418,13 +418,79 @@ with $X_{(1)}= \text{min} \{ X_1, ..., X_n \}$. Where $X_1, ..., X_n$ is a rando
 $X_1, ..., X_n$ independent and identically distributed random variables ).
 
 
-## Heapsort
+# Heapsort
 
 Heapsort sorts in place: only a constant number of array elements
 are stored outside the input array at any time
 
 
 
+## Heap
+
+A (binary) heap is a data structure represented as $A[1:A.heap-size]$, where $0 \le A.heap-size \le n$, are valid
+elements of the heap. The root is $A[1]$
+
+
+![[heap_im.png | 1000]]
+
+It is somewhat intuitive that PARENT$(i)=\lfloor \frac{i}{2} \rfloor$, LEFT$(i)=2i$, RIGHT$(i)=2i+1$.  
+
+There are two kinds of heaps: max-heaps and min-heaps with their respective **heap property** $\text{PARENT}(i) \ge A[i]$, 
+$A[\text{PARENT}(i)] \ge A[i]$. Heapsort used the first.  
+
+The **height** of a node in a heap is the
+number of edges on the longest simple downward path from the node to a leaf, and
+we define the height of the heap to be the height of its root.
+
+The height of a heap of *n* elements is $\lfloor \text{log}_2n \rfloor$.  
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+Since the maximum number of nodes ($n_{\max}$) happens when the last level $h$ is completely full.
+
+$\displaystyle n_{\max} = \sum_{i=0}^{h} 2^i = 2^0 + 2^1 + 2^2 + \dots + 2^h= n_{\max} = 2^{h+1} - 1$. 
+
+And the minimum number of nodes ($n_{\min}$)  happens when the last level $h$ has exactly one node. This is equivalent to a fully filled tree of height $h-1$ plus $1$ extra node. 
+
+$\displaystyle n_{\min} = (2^{(h-1)+1} - 1) + 1 = 2^h - 1 + 1 = 2^h$.
+
+Therefore, for any binary heap of height $h$, the number of nodes $n$ must satisfy the inequality $\displaystyle 2^h \le n \le 2^{h+1} - 1$.
+
+So $\displaystyle 2^h \le n < 2^{h+1} \implies  \log_2(2^h) \le \log_2 n < \log_2(2^{h+1})$
+
+$\displaystyle h \le \log_2 n < h + 1$
+
+Since $h$ must is an integer, the condition that $\log_2 n$ is bounded between $h$ and $h+1$ implies we can apply the floor function 
+
+$\displaystyle h = \lfloor \log_2 n \rfloor$.  
+
+ 
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+
+
+The **depth** of a node in a binary heap is the number of edges on the unique path from the root to that node.
+
+Similarly, we find that the depth of a node $i$ is $\lfloor \text{log}_2 i \rfloor$. So the height of a node $i$
+is $\displaystyle \lfloor \log_2 n \rfloor - \lfloor \log_2(i + 1) \rfloor$
+
+
+$\textbf{MAX-HEAPIFY}(A, i):$
+
+$$
+\begin{array}{ll}
+1 & l = \text{LEFT}(i) \\
+2 & r = \text{RIGHT}(i) \\
+3 & \textbf{if } l \le A.\textit{heap-size} \textbf{ and } A[l] > A[i] \\
+4 & \quad \textit{largest} = l \\
+5 & \textbf{else } \textit{largest} = i \\
+6 & \textbf{if } r \le A.\textit{heap-size} \textbf{ and } A[r] > A[\textit{largest}] \\
+7 & \quad \textit{largest} = r \\
+8 & \textbf{if } \textit{largest} \neq i \\
+9 & \quad \text{exchange } A[i] \text{ with } A[\textit{largest}] \\
+10 & \quad \textbf{MAX-HEAPIFY}(A, \textit{largest})
+\end{array}
+$$
 
 
 
