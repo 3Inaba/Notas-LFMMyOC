@@ -382,4 +382,49 @@ $$
 
 # Probabilistic Analysis and Randomized Algorithms
 
+If you need a review on probability theory you may want to view [this](https://3inaba.github.io/Notas-LFMMyOC/Editores/Santiago/prob) 
+
+To perform a probabilistic analysis, we
+use knowledge of, or make assumptions about, the distribution of the inputs. Then
+we analyze our algorithm, computing an average-case running time, where we take
+the average, or expected value, over the distribution of the possible inputs. When
+reporting such a running time, we refer to it as the **average-case running time**.
+
+In the book there are examples and not a structured approach. I'll leave this space in blank for now and 
+fill in the page later using other bibliography.
+
+
+# Sorting and Order Statistics
+
+'Many computer scientists consider sorting to be the most fundamental problem in
+the study of algorithms'. Here's a summary table:
+
+
+| Algorithm | Worst-case running time | Average-case/expected running time |
+| :--- | :--- | :--- |
+| **Insertion sort** | $\Theta(n^2)$ | $\Theta(n^2)$ |
+| **Merge sort** | $\Theta(n \lg n)$ | $\Theta(n \lg n)$ |
+| **Heapsort** | $O(n \lg n)$ | — |
+| **Quicksort** | $\Theta(n^2)$ | $\Theta(n \lg n)$ (expected) |
+| **Counting sort** | $\Theta(k + n)$ | $\Theta(k + n)$ |
+| **Radix sort** | $\Theta(d(n + k))$ | $\Theta(d(n + k))$ |
+| **Bucket sort** | $\Theta(n^2)$ | $\Theta(n)$ (average-case) |
+
+
+The $i$-th order statistic of a set of $n$ numbers is the $i$ th smallest number in the set.  
+
+In general, the $i$-th order statistics is $X_{(i)}= \text{min} \{ X_1, ..., X_n \} \setminus \{ X_{(1)}, ..., X_{(i-1)} \} $, 
+with $X_{(1)}= \text{min} \{ X_1, ..., X_n \}$. Where $X_1, ..., X_n$ is a random sample (a collection of 
+$X_1, ..., X_n$ independent and identically distributed random variables ).
+
+
+## Heapsort
+
+Heapsort sorts in place: only a constant number of array elements
+are stored outside the input array at any time
+
+
+
+
+
 

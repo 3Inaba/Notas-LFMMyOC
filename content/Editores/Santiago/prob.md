@@ -13,5 +13,6 @@ I recommend the following book to whoever who wants to learn probability from a 
 
 [![[prob.jpeg | 125]]](https://link.springer.com/book/10.1007/978-3-030-56402-5)
 
+And the following book for a quick less formal approach
 
-
+[![[stats.jpg | 125]]](https://doi.org/10.1007/978-0-387-21736-9)
