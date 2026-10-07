@@ -239,7 +239,7 @@ The complexity of this algorithms is $O(n)$ for the best case (already sorted) a
 In the **RAM** (Random-Access Machine)  model each instruction or data access takes a constant amount
 of time. 
 
-## Merge(A, p, q, r)
+## Merge (A, p, q, r)
 
 $$ \textbf{MERGE}(A, p, q, r): \\$$
 $$
@@ -274,7 +274,7 @@ $$
 \end{array}
 $$
 
-## Merge-sort(A, p, r)
+## Merge-Sort (A, p, r)
 $$\textbf{MERGE-SORT}(A, p, r): \\$$
 $$
 \begin{array}{ll}
@@ -472,9 +472,9 @@ $\displaystyle h = \lfloor \log_2 n \rfloor$.
 The **depth** of a node in a binary heap is the number of edges on the unique path from the root to that node.
 
 Similarly, we find that the depth of a node $i$ is $\lfloor \text{log}_2 i \rfloor$. So the height of a node $i$
-is $\displaystyle \lfloor \log_2 n \rfloor - \lfloor \log_2(i + 1) \rfloor$
+is $\displaystyle \lfloor \log_2 n \rfloor - \lfloor \log_2(i) \rfloor$
 
-
+## Max-Heapify (A, i)
 $\textbf{MAX-HEAPIFY}(A, i):$
 
 $$
@@ -492,5 +492,50 @@ $$
 \end{array}
 $$
 
+Let $T(n)$ be the worst-case running time on a subtree of size $n$. The children's subtrees each have size at most $2n/3$.
+So $T(n) \le  T(2n/3)+ \Theta(1)$ and by case 2 of the master theorem, $T(n)=O(\text{lg}n)$
+
+## Build-Max-Heap (A, n)
+
+The procedure BUILD-MAX-HEAP converts an array $A[1 : n]$ into a max-heap by calling $\text{MAX-HEAPIFY}$ in a bottom-up manner. 
+Notably, the elements in the subarray $A[\lfloor n/2 \rfloor + 1 : n]$ are all leaves of the tree, since  $i \ge \lfloor n/2 \rfloor + 1 \implies  2i \ge 2\left(\lfloor n/2 \rfloor + 1\right)$. 
+Using the floor property $\lfloor n/2 \rfloor > n/2 - 1$, so $2i > 2\left(\frac{n}{2} - 1 + 1\right) = 2\left(\frac{n}{2}\right) = n$  
+
+
+$\textbf{BUILD-MAX-HEAP}(A, n):$
+
+$$
+\begin{array}{ll}
+1 & A.\textit{heap-size} = n \\
+2 & \textbf{for } i = \lfloor n/2 \rfloor \textbf{ downto } 1 \\
+3 & \quad \textbf{MAX-HEAPIFY}(A, i)
+\end{array}
+$$
+
+
+![[heap_build.png | 1000]]
+  
+
+The running time is $O(n)$. 
+
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+An $n$ elements heap has height $\lfloor \lg n \rfloor$ and at most $ \left\lceil \frac{n}{2^{h+1}} \right\rceil$ nodes of any height $h$.
+
+Moreover, $ \left\lceil \frac{n}{2^{h+1}} \right\rceil \ge \frac{1}{2}$ for $0 \le h \le \lfloor \lg n \rfloor$. Since $\lceil x \rceil \le 2x$ for any $x \ge \frac{1}{2}$, so $ \left\lceil \frac{n}{2^{h+1}} \right\rceil \le \frac{n}{2^h}$.
+  
+
+Therefore, the total cost of the algorithm is bounded as follows  
+
+$\begin{aligned}
+\sum_{h=0}^{\lfloor \lg n \rfloor} \left\lceil \frac{n}{2^{h+1}} \right\rceil ch &\le \sum_{h=0}^{\lfloor \lg n \rfloor} \frac{n}{2^h} ch \\
+&= cn \sum_{h=0}^{\lfloor \lg n \rfloor} \frac{h}{2^h} \\
+&\le cn \sum_{h=0}^{\infty} \frac{h}{2^h} \\
+&= cn \cdot \frac{1/2}{(1 - 1/2)^2} \quad \text{(by infinite series expansion where } x = 1/2) \\
+&= 2cn \\
+&= O(n).
+\end{aligned}$
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
 
 

@@ -16,3 +16,8 @@ I recommend the following book to whoever who wants to learn probability from a 
 And the following book for a quick less formal approach
 
 [![[stats.jpg | 125]]](https://doi.org/10.1007/978-0-387-21736-9)
+
+Lastly, for an intermediate proability course (and more interesting subjects in the page of the author)
+
+[![[prob_int.jpg | 125]]](https://sites.google.com/ciencias.unam.mx/luis-rincon?pli=1&authuser=0)
+
