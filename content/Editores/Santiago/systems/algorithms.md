@@ -539,3 +539,224 @@ $\begin{aligned}
 <hr style="height: 3px; border: none; background-color: #a1a1aa;">
 
 
+## Heapsort (A,n)
+
+Takes $O(n \, \text{lg}n)$ since build-max-heap takes $O(n)$ and each of the $n-1$ calls to max-heapify
+takes $$O( \text{lg}n)
+
+$\textbf{HEAPSORT}(A, n):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{BUILD-MAX-HEAP}(A, n) \\
+2 & \textbf{for } i = n \textbf{ downto } 2 \\
+3 & \quad \text{exchange } A[1] \text{ with } A[i] \\
+4 & \quad A.\textit{heap-size} = A.\textit{heap-size} - 1 \\
+5 & \quad \textbf{MAX-HEAPIFY}(A, 1)
+\end{array}
+$$
+
+![[heap_sort.png | 1000]]
+
+
+## Priority queues
+
+Is one of the most popular applications of heaps. They have two forms 
+max-priority queues and min-priority queues.
+
+A **priority queue** is a data structure for maintaining a set $S$ of elements, each with an associated value called a **key**. A **max-priority queue** supports the following operations:
+
+- $\textbf{INSERT}(S, x, k)$ inserts the element $x$ with key $k$ into the set $S$, which is equivalent to the operation $S = S \cup \{x\}$.
+<br>
+- $\textbf{MAXIMUM}(S)$ returns the element of $S$ with the largest key.
+<br>
+- $\textbf{EXTRACT-MAX}(S)$ removes and returns the element of $S$ with the largest key.
+<br>
+- $\textbf{INCREASE-KEY}(S, x, k)$ increases the value of element $x$’s key to the new value $k$, which is assumed to be at least as large as $x$’s current key value.
+
+The running time of $\textbf{MAX-HEAP-EXTRACT-MAX}$ is $O(\lg n)$, since it performs only a constant amount of work on top of the $O(\lg n)$ time for $\text{MAX-HEAPIFY}$.
+
+$\textbf{MAX-HEAP-MAXIMUM}(A):$
+
+$$ 
+\begin{array}{ll}
+1 & \textbf{if } A.\textit{heap-size} < 1 \\
+2 & \quad \textbf{error } \text{"heap underflow"} \\
+3 & \textbf{return } A[1]
+\end{array}
+$$
+
+<br>
+
+$\textbf{MAX-HEAP-EXTRACT-MAX}(A):$
+
+$$ 
+\begin{array}{ll}
+1 & \textit{max} = \textbf{MAX-HEAP-MAXIMUM}(A) \\
+2 & A[1] = A[A.\textit{heap-size}] \\
+3 & A.\textit{heap-size} = A.\textit{heap-size} - 1 \\
+4 & \textbf{MAX-HEAPIFY}(A, 1) \\
+5 & \textbf{return } \textit{max}
+\end{array}
+$$
+
+The running time of $\textbf{MAX-HEAP-INCREASE-KEY}$ on an $n$-element heap is $O(\lg n)$, since the path traced from the node updated in line 3 to the root has length $O(\lg n)$.
+The running time of $\textbf{MAX-HEAP-INSERT}$ on an $n$-element heap is $O(\lg n)$.
+
+
+$\textbf{MAX-HEAP-INCREASE-KEY}(A, x, k):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } k < x.\textit{key} \\
+2 & \quad \textbf{error } \text{"new key is smaller than current key"} \\
+3 & x.\textit{key} = k \\
+4 & \text{find the index } i \text{ in array } A \text{ where object } x \text{ occurs} \\
+5 & \textbf{while } i > 1 \textbf{ and } A[\text{PARENT}(i)].\textit{key} < A[i].\textit{key} \\
+6 & \quad \text{exchange } A[i] \text{ with } A[\text{PARENT}(i)], \text{ updating the object-to-index mapping} \\
+7 & \quad i = \text{PARENT}(i)
+\end{array}
+$$
+
+<br>
+
+$\textbf{MAX-HEAP-INSERT}(A, x, n):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } A.\textit{heap-size} == n \\
+2 & \quad \textbf{error } \text{"heap overflow"} \\
+3 & A.\textit{heap-size} = A.\textit{heap-size} + 1 \\
+4 & k = x.\textit{key} \\
+5 & x.\textit{key} = -\infty \\
+6 & A[A.\textit{heap-size}] = x \\
+7 & \text{map } x \text{ to index } A.\textit{heap-size} \text{ in the array} \\
+8 & \textbf{MAX-HEAP-INCREASE-KEY}(A, x, k)
+\end{array}
+$$
+
+
+
+
+# Quicksort
+
+Is often the best practical choice for sorting because it is remarkably efficient on average: its
+expected running time is $\Theta(n \, \text{lg} n)$when all numbers are distinct. It has a worst-
+case running time of $\Theta(n^2)$.
+
+## Quicksort (A, p, r)
+
+$\textbf{QUICKSORT}(A, p, r):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } p < r \\
+2 & \quad \text{// Partition the subarray around the pivot, which ends up in } A[q]. \\
+3 & \quad q = \textbf{PARTITION}(A, p, r) \\
+4 & \quad \textbf{QUICKSORT}(A, p, q - 1) \quad \text{// recursively sort the low side} \\
+5 & \quad \textbf{QUICKSORT}(A, q + 1, r) \quad \text{// recursively sort the high side}
+\end{array}
+$$
+
+## Partition (A, p, r)
+
+$\textbf{PARTITION}(A, p, r):$
+
+$$
+\begin{array}{ll}
+1 & x = A[r] \quad \text{// the pivot} \\
+2 & i = p - 1 \quad \text{// highest index into the low side} \\
+3 & \textbf{for } j = p \textbf{ to } r - 1 \quad \text{// process each element other than the pivot} \\
+4 & \quad \textbf{if } A[j] \le x \quad \text{// does this element belong on the low side?} \\
+5 & \quad \quad i = i + 1 \quad \text{// index of a new slot in the low side} \\
+6 & \quad \quad \text{exchange } A[i] \text{ with } A[j] \quad \text{// put this element there} \\
+7 & \text{exchange } A[i + 1] \text{ with } A[r] \quad \text{// pivot goes just to the right of the low side} \\
+8 & \textbf{return } i + 1
+\end{array}
+$$
+
+<p align="center">
+  <img src="quicksort.png" width="250">
+</p>
+
+
+<p align="center">
+  <img src="partition.png" width="600">
+</p>
+
+
+
+The worst-case behavior for quicksort occurs when the partitioning produces one subproblem with $n - 1$ elements and one with $0$ elements.
+Assuming this unbalanced partitioning arises in each recursive call, where the partition costs $\Theta(n)$ time and $T(0) = \Theta(1)$, the recurrence for the running time is:
+$$T(n)  = T(n - 1) + T(0) + \Theta(n) = T(n - 1) + \Theta(n) = \Theta(n^2)$.
+
+Te most even possible split is two subproblems, each of size no more than $n/2$, since one is of size $\lfloor (n - 1)/2 \rfloor \le n/2$ and one of size $\lceil (n - 1)/2 \rceil - 1 \le n/2$. 
+In this case, the running time is described by the recurrence:
+
+$ T(n) = 2T(n/2) + \Theta(n)$
+
+By case 2 of the master theorem, $T(n) = \Theta(n \lg n)$.
+
+## Randomized-Partition (A, p, r)
+
+$\textbf{RANDOMIZED-PARTITION}(A, p, r):$
+
+$$
+\begin{array}{ll}
+1 & i = \textbf{RANDOM}(p, r) \\
+2 & \text{exchange } A[r] \text{ with } A[i] \\
+3 & \textbf{return } \textbf{PARTITION}(A, p, r)
+\end{array}
+$$
+
+## Randomized-Quicksort (A, p, r)
+
+Has the same worst-case running time as quicksort and an expected running time of $ O(n \lg n)$ (assuming that the element values are
+distinct) (the proof is rather uninteresting and a bit long to add it).
+
+$\textbf{RANDOMIZED-QUICKSORT}(A, p, r):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } p < r \\
+2 & \quad q = \textbf{RANDOMIZED-PARTITION}(A, p, r) \\
+3 & \quad \textbf{RANDOMIZED-QUICKSORT}(A, p, q - 1) \\
+4 & \quad \textbf{RANDOMIZED-QUICKSORT}(A, q + 1, r)
+\end{array}
+$$
+
+
+# Sorting in Linear Time
+
+So far we've seen comparison sorts, the sorted order they determine
+is based only on comparisons between the input elements.
+And any comparison sort must make $\Omega(n \lg n)$ comparisons in the worst case to sort $n$ elements.
+
+## Counting Sort
+
+Counting sort assumes that each of the $n$ input elements is an integer in the range $0$ to $k$, for some integer $k$. It runs in $\Theta(n + k)$ time.
+
+$\textbf{COUNTING-SORT}(A, n, k):$
+
+$$
+\begin{array}{ll}
+1 & \text{let } B[1 \dots n] \text{ and } C[0 \dots k] \text{ be new arrays} \\
+2 & \textbf{for } i = 0 \textbf{ to } k \\
+3 & \quad C[i] = 0 \\
+4 & \textbf{for } j = 1 \textbf{ to } n \\
+5 & \quad C[A[j]] = C[A[j]] + 1 \\
+6 & \quad \text{// } C[i] \text{ now contains the number of elements equal to } i. \\
+7 & \textbf{for } i = 1 \textbf{ to } k \\
+8 & \quad C[i] = C[i] + C[i - 1] \\
+9 & \quad \text{// } C[i] \text{ now contains the number of elements less than or equal to } i. \\
+10 & \quad \text{// Copy } A \text{ to } B\text{, starting from the end of } A. \\
+11 & \textbf{for } j = n \textbf{ downto } 1 \\
+12 & \quad B[C[A[j]]] = A[j] \\
+13 & \quad C[A[j]] = C[A[j]] - 1 \quad \text{// to handle duplicate values} \\
+14 & \textbf{return } B
+\end{array}
+$$
+
+
+
+
