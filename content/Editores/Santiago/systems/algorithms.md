@@ -415,7 +415,13 @@ The $i$-th order statistic of a set of $n$ numbers is the $i$ th smallest number
 
 In general, the $i$-th order statistics is $X_{(i)}= \text{min} \{ X_1, ..., X_n \} \setminus \{ X_{(1)}, ..., X_{(i-1)} \} $, 
 with $X_{(1)}= \text{min} \{ X_1, ..., X_n \}$. Where $X_1, ..., X_n$ is a random sample (a collection of 
-$X_1, ..., X_n$ independent and identically distributed random variables ).
+$X_1, ..., X_n$ independent and identically distributed random variables ).  
+
+A *quantile* of order $p \in (0,1)$ of a random variable $X$ (or its distribution) is a number $x_p$ such that
+
+$P(X \le x_p) \ge p$ and $P(X \ge x_p) \ge 1-p$.  
+
+The quantile of order $1/2$ is called the *median* and informally its the middle point.
 
 
 # Heapsort
@@ -664,13 +670,13 @@ $\textbf{PARTITION}(A, p, r):$
 
 $$
 \begin{array}{ll}
-1 & x = A[r] \quad \text{// the pivot} \\
-2 & i = p - 1 \quad \text{// highest index into the low side} \\
-3 & \textbf{for } j = p \textbf{ to } r - 1 \quad \text{// process each element other than the pivot} \\
-4 & \quad \textbf{if } A[j] \le x \quad \text{// does this element belong on the low side?} \\
-5 & \quad \quad i = i + 1 \quad \text{// index of a new slot in the low side} \\
-6 & \quad \quad \text{exchange } A[i] \text{ with } A[j] \quad \text{// put this element there} \\
-7 & \text{exchange } A[i + 1] \text{ with } A[r] \quad \text{// pivot goes just to the right of the low side} \\
+1 & x = A[r]  \\
+2 & i = p - 1  \\
+3 & \textbf{for } j = p  \\
+4 & \quad \textbf{if } A[j] \le x  \\
+5 & \quad \quad i = i + 1 \quad  \\
+6 & \quad \quad \text{exchange } A[i] \text{ with } A[j]  \\
+7 & \text{exchange } A[i + 1] \text{ with } A[r]  \\
 8 & \textbf{return } i + 1
 \end{array}
 $$
@@ -712,7 +718,7 @@ $$
 ## Randomized-Quicksort (A, p, r)
 
 Has the same worst-case running time as quicksort and an expected running time of $ O(n \lg n)$ (assuming that the element values are
-distinct) (the proof is rather uninteresting and a bit long to add it).
+distinct) .
 
 $\textbf{RANDOMIZED-QUICKSORT}(A, p, r):$
 
@@ -725,12 +731,47 @@ $$
 \end{array}
 $$
 
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+Note that the running time of $\text{RANDOMIZED-QUICKSORT}$ on an $n$-element array is $O(n + X)$, where $X$ is the number of element comparisons performed.
+
+To analize $E[X]$, note too that during the execution of $\text{RANDOMIZED-QUICKSORT}$ on an array of $n$ distinct elements $z_1 < z_2 < \dots < z_n$, $z_i$ is compared with $z_j$, where $i < j$, if and only if one of them is chosen as a pivot before any other element in the set $Z_{ij}= \{ z_i, ..., z_j  \}$. And, no two elements are ever compared twice.  
+
+Since $|Z_{ij}|=\frac{1}{j-i+1}$, the probability that $z_i$ is compared with $z_j$ is $\frac{2}{j-i+1}$.   
+
+Let $X_{ij}= I_{ \{ z_i \text{ is compared with } z_j \}}$.
+
+$$
+\begin{aligned}
+E[X] &= E\left[ \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} X_{ij} \right] \\
+     &= \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} E[X_{ij}] \quad \text{(by linearity of expectation)} \\
+     &= \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} \Pr\{z_i \text{ is compared with } z_j\}  \\
+     &= \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} \frac{2}{j - i + 1} = \sum_{i=1}^{n-1} \sum_{k=1}^{n-i} \frac{2}{k + 1} \\
+&< \sum_{i=1}^{n-1} \sum_{k=1}^{n} \frac{2}{k} = \sum_{i=1}^{n-1} O(\lg n) \\
+&= O(n \lg n)
+\end{aligned}
+$$
+
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
 
 # Sorting in Linear Time
 
 So far we've seen comparison sorts, the sorted order they determine
 is based only on comparisons between the input elements.
 And any comparison sort must make $\Omega(n \lg n)$ comparisons in the worst case to sort $n$ elements.
+
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+It suffices to determine the height of a decision tree in which each permutation appears as a reachable leaf. 
+Consider a decision tree of height $h$ with $l$ reachable leaves corresponding to a comparison sort on $n$ elements. 
+Because each of the $n!$ permutations of the input appears as one or more leaves, we have $n! \le l$. 
+Since a binary tree of height $h$ has no more than $2^h$ leaves $ n! \le l \le 2^h \implies  h \ge \lg(n!) = \Omega(n \lg n)$.
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+
 
 ## Counting Sort
 
@@ -759,4 +800,88 @@ $$
 
 
 
+![[counting_sort.png | 1000]]
+
+
+## Radix Sort
+
+In order for radix sort to work, the digit sorts must be stable. It assumes 
+that each element in $A[1:n]$ has $d$ digits with $1$ the lowest and $d$ the highest-order digit.
+
+$\textbf{RADIX-SORT}(A, n, d):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{for } i = 1 \textbf{ to } d \\
+2 & \quad \text{use a stable sort to sort array } A[1 \dots n] \text{ on digit } i
+\end{array}
+$$
+
+
+And it is clear that given $n$ $d$-digit numbers in which each digit can take on up to $k$ possible values, $\text{RADIX-SORT}$ correctly sorts these numbers in $\Theta(d(n + k))$ time 
+if the stable sort it uses takes $\Theta(n + k)$ time.
+
+
+
+## Bucket Sort
+
+Bucket sort assumes the input is drawn from a uniform distribution and has an average-case running 
+time of $O(n)$.
+
+It assumes that the input is an array $A[1 \dots n]$ and that $\forall \, A[i]$,  $0 \le A[i] < 1$.
+
+$\textbf{BUCKET-SORT}(A, n):$
+
+$$
+\begin{array}{ll}
+1 & \text{let } B[0 \dots n - 1] \text{ be a new array} \\
+2 & \textbf{for } i = 0 \textbf{ to } n - 1 \\
+3 & \quad \text{make } B[i] \text{ an empty list} \\
+4 & \textbf{for } i = 1 \textbf{ to } n \\
+5 & \quad \text{insert } A[i] \text{ into list } B[\lfloor n \cdot A[i] \rfloor] \\
+6 & \textbf{for } i = 0 \textbf{ to } n - 1 \\
+7 & \quad \text{sort list } B[i] \text{ with insertion sort} \\
+8 & \text{concatenate the lists } B[0], B[1], \dots, B[n - 1] \text{ together in order} \\
+9 & \textbf{return } \text{the concatenated lists}
+\end{array}
+$$
+
+
+![[bucket_sort.png | 1000]]
+
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+
+Let $n_i$ be the random variable denoting card($B[i])$. That is, the number of successes in $n$ Bernoulli trials. Success occurs when an element lands in bucket $B[i]$, with a probability of success $p = \frac{1}{n}$ and failure $q = 1 - \frac{1}{n}$.
+
+Then, $E[n_i] = np = n(1/n) = 1$ and $\text{Var}[n_i] = npq = 1 - 1/n$. And  $E[n_i^2] = \text{Var}[n_i] + E^2[n_i] = (1 - 1/n) + 1^2 = 2 - 1/n$.
+
+
+Since insertion sort runs in quadratic time, the total running time of bucket sort is $ T(n) = \Theta(n) + \sum_{i=0}^{n-1} \mathcal{O}(n_i^2) $.
+
+$$
+\begin{aligned}
+E[T(n)] &= E\left[\Theta(n) + \sum_{i=0}^{n-1} \mathcal{O}(n_i^2)\right] \\
+&= \Theta(n) + \sum_{i=0}^{n-1} E[\mathcal{O}(n_i^2)] \quad \text{(by linearity of expectation)} \\
+&= \Theta(n) + \sum_{i=0}^{n-1} \mathcal{O}(E[n_i^2]) \\
+&= \Theta(n) + \sum_{i=0}^{n-1} \mathcal{O}\left(2 - \frac{1}{n}\right) \\
+&= \Theta(n) + n \cdot \mathcal{O}(1) \\
+&= \Theta(n) + \mathcal{O}(n) \\
+&= \Theta(n)
+\end{aligned}
+$$
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+
+# Medians and Order Statistics
+
+Basic definitions are [here](#sorting-and-order-statistics).
+
+The *selection problem*: 
+
+- *Input:* A set $A$ of $n$ distinct numbers and an integer $i$, with $1 \le i \le n$.
+
+- *Output:* The element $x \in A$ that is larger than exactly $i - 1$ other elements of $A$.
 
