@@ -42,7 +42,10 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   right: [
     Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
+    Component.DesktopOnly(Component.TableOfContents({ 
+  minDepth: 1,  // Starts showing from # (h1)
+  maxDepth: 6   // Shows headings down to #### (h4). Change to 5 or 6 if needed.
+})),
     Component.Backlinks(),
   ],
 }

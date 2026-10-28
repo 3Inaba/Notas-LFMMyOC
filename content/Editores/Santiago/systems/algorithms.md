@@ -421,7 +421,7 @@ A *quantile* of order $p \in (0,1)$ of a random variable $X$ (or its distributio
 
 $P(X \le x_p) \ge p$ and $P(X \ge x_p) \ge 1-p$.  
 
-The quantile of order $1/2$ is called the *median* and informally its the middle point.
+The quantile of order $1/2$ is called the *median* and informally it's the middle point.
 
 
 # Heapsort
@@ -503,7 +503,7 @@ So $T(n) \le  T(2n/3)+ \Theta(1)$ and by case 2 of the master theorem, $T(n)=O(\
 
 ## Build-Max-Heap (A, n)
 
-The procedure BUILD-MAX-HEAP converts an array $A[1 : n]$ into a max-heap by calling $\text{MAX-HEAPIFY}$ in a bottom-up manner. 
+The procedure $\text{BUILD-MAX-HEAP}$ converts an array $A[1 : n]$ into a max-heap by calling $\text{MAX-HEAPIFY}$ in a bottom-up manner. 
 Notably, the elements in the subarray $A[\lfloor n/2 \rfloor + 1 : n]$ are all leaves of the tree, since  $i \ge \lfloor n/2 \rfloor + 1 \implies  2i \ge 2\left(\lfloor n/2 \rfloor + 1\right)$. 
 Using the floor property $\lfloor n/2 \rfloor > n/2 - 1$, so $2i > 2\left(\frac{n}{2} - 1 + 1\right) = 2\left(\frac{n}{2}\right) = n$  
 
@@ -878,10 +878,109 @@ $$
 # Medians and Order Statistics
 
 Basic definitions are [here](#sorting-and-order-statistics).
+Considering the lower median $\lfloor (n+1)/2 \rfloor$.
 
 The *selection problem*: 
 
 - *Input:* A set $A$ of $n$ distinct numbers and an integer $i$, with $1 \le i \le n$.
 
 - *Output:* The element $x \in A$ that is larger than exactly $i - 1$ other elements of $A$.
+
+First, to find the minimum and maximum
+
+$\textbf{MINIMUM}(A, n):$
+
+$$
+\begin{array}{ll}
+1 & \textit{min} = A[1] \\
+2 & \textbf{for } i = 2 \textbf{ to } n \\
+3 & \quad \textbf{if } \textit{min} > A[i] \\
+4 & \quad \quad \textit{min} = A[i] \\
+5 & \textbf{return } \textit{min}
+\end{array}
+$$
+
+This is the best algorithm because there’s a lower bound of $n-1$ comparisons for the problem 
+of determining the minimum.
+
+
+## Randomized Select 
+
+Solves the selction problem and the expected running time of $\text{RANDOMIZED-SELEC}$T is $\Theta(n)$, assuming that the elements are distinct.
+The worst-case is $\Theta(n^2)$.
+
+$\textbf{RANDOMIZED-SELECT}(A, p, r, i):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } p == r \\
+2 & \quad \textbf{return } A[p] \quad \text{// } 1 \le i \le r - p + 1 \text{ when } p == r \text{ means that } i = 1 \\
+3 & q = \textbf{RANDOMIZED-PARTITION}(A, p, r) \\
+4 & k = q - p + 1 \\
+5 & \textbf{if } i == k \\
+6 & \quad \textbf{return } A[q] \quad \text{// the pivot value is the answer} \\
+7 & \textbf{elseif } i < k \\
+8 & \quad \textbf{return } \textbf{RANDOMIZED-SELECT}(A, p, q - 1, i) \\
+9 & \textbf{else } \textbf{return } \textbf{RANDOMIZED-SELECT}(A, q + 1, r, i - k)
+\end{array}
+$$
+
+
+![[randomized_select.png | 1000]]
+
+## Select
+
+Is not as practical as the $\text{RANDOMIZED-SELECT}$. It's mostly of theoretical interest and its running time is $\Theta(n)$.
+
+$\textbf{SELECT}(A, p, r, i):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{while } (r - p + 1) \bmod 5 \neq 0 \\
+2 & \quad \textbf{for } j = p + 1 \textbf{ to } r \quad \text{// put the minimum into } A[p] \\
+3 & \quad \quad \textbf{if } A[p] > A[j] \\
+4 & \quad \quad \quad \text{exchange } A[p] \text{ with } A[j] \\
+5 & \quad \text{// If we want the minimum of } A[p \dots r]\text{, we’re done.} \\
+6 & \quad \textbf{if } i == 1 \\
+7 & \quad \quad \textbf{return } A[p] \\
+8 & \quad \text{// Otherwise, we want the } (i - 1)\text{-st element of } A[p + 1 \dots r]. \\
+9 & \quad p = p + 1 \\
+10 & \quad i = i - 1 \\
+11 & g = (r - p + 1) / 5 \quad \text{// number of 5-element groups} \\
+12 & \textbf{for } j = p \textbf{ to } p + g - 1 \quad \text{// sort each group} \\
+13 & \quad \text{sort } \langle A[j], A[j + g], A[j + 2g], A[j + 3g], A[j + 4g] \rangle \text{ in place} \\
+14 & \text{// All group medians now lie in the middle fifth of } A[p \dots r]. \\
+15 & \text{// Find the pivot } x \text{ recursively as the median of the group medians.} \\
+16 & x = \textbf{SELECT}(A, p + 2g, p + 3g - 1, \lceil g/2 \rceil) \\
+17 & q = \textbf{PARTITION-AROUND}(A, p, r, x) \quad \text{// partition around the pivot} \\
+18 & \text{// The rest is just like lines 3--9 of RANDOMIZED-SELECT.} \\
+19 & k = q - p + 1 \\
+20 & \textbf{if } i == k \\
+21 & \quad \textbf{return } A[q] \quad \text{// the pivot value is the answer} \\
+22 & \textbf{elseif } i < k \\
+23 & \quad \textbf{return } \textbf{SELECT}(A, p, q - 1, i) \\
+24 & \textbf{else } \textbf{return } \textbf{SELECT}(A, q + 1, r, i - k)
+\end{array}
+$$
+
+![[select.png | 1000]]
+
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+The recurrence for the worst-case running time is $T(n) \le T(n/5) + T(7n/10) + \Theta(n)$.
+
+Since the time to partition in line 17 is $\Theta(n)$. The recursive call to find the pivot in line 16 takes $T(g) \le T(n/5)$ time, since $g \le n/5$ and $T(n)$ monotonically increases. 
+The number of elements in the recursive call turns out to be at most $7n/10$, and hence the worst-case cost for lines 23 and 24 is at most $T(7n/10)$.
+And all the other lines are at most $\Theta(n)$.
+
+The recurrence can be solved using substitution
+
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+
+
+# Data Structures
+
 
