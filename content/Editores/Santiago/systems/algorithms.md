@@ -984,3 +984,44 @@ The recurrence can be solved using substitution
 # Data Structures
 
 
+A dynamic set is a *dictionary* if the operations of insert, delete elements and test membership are defined.
+Some dynamic sets have a *key* (an identifying object's attribute) and/or *satellite data*, which are carried around in other object attributes.
+
+
+Operations on a dynamic set can be grouped into: *queries* (return information about the set) and *modifying operations* (change the set).
+TYpical operations are
+
+- **SEARCH(S, k)**: Returns a pointer $x$ where $x.\text{key} = k$, or `NIL` if $x \notin S$.
+- **INSERT(S, x)**: Adds the element pointed to by $x$ to set $S$.
+- **DELETE(S, x)**: Removes the element pointed to by $x$ from $S$.
+- **MINIMUM(S) / MAXIMUM(S)**: Returns a pointer to the smallest or largest element in a totally ordered set $S$.
+- **SUCCESSOR(S, x) / PREDECESSOR(S, x)**: Returns a pointer to the next larger or next smaller element relative to $x$ in a totally ordered set $S$, or `NIL`.
+
+
+Implementing a dynamic set using an array offers straightforward algorithms for operations, though several of these operations suffer from a worst-case running time of $\Theta(n)$.
+
+
+## Array-Based Data Structures
+
+### Arrays
+
+Assuming that an array is stored as a contiguous sequence of bytes in memory. 
+If the first element of an array has index $s$ (for example, in an array with $1$-origin indexing, $s = 1$), the array starts at memory address $a$, and each array element occupies $b$ bytes, then the $i$th element occupies bytes $a + b(i - s)$ through $a + b(i - s + 1) - 1$.
+
+### Matrices
+
+For an $m \times n$ matrix, if the rows, columns, and the single array all are indexed starting at $s$, 
+then $M[i, j]$—the element in row $i$ and column $j$—is at array index $s + n(i - s) + (j - s)$ 
+with row-major order and $s + m(j - s) + (i - s)$ with column-major order.  
+
+For $M=
+\begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{pmatrix}
+$, 
+
+![[matrix.png | 1000]]
+
+
+### Stacks and queues
