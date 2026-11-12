@@ -1025,3 +1025,367 @@ $,
 
 
 ### Stacks and queues
+
+Are dynamic sets in which the element removed from the set
+by the DELETE operation is prespecified.
+
+In a **stack**, the element deleted from
+the set is the one most recently inserted: the stack implements a last-in, first-out,
+or LIFO, policy. Similarly, in a **queue**, the element deleted is always the one that
+has been in the set for the longest time: the queue implements a first-in, first-out,
+or FIFO, policy.
+
+![[stack_queue.png | 1000]]
+
+
+$\text{INSERT}$ on a stack is often called $\text{PUSH}$ and $\text{DELETE}$ (which does not take an argument), 
+is often called $\text{POP}$. The stack consist of elements $S[1:S.top]$. Each operation takes $O(1)$ time:
+
+$\textbf{STACK-EMPTY}(S):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } S.\textit{top} == 0 \\
+2 & \quad \textbf{return } \text{TRUE} \\
+3 & \textbf{else return } \text{FALSE}
+\end{array}
+$$
+
+$\textbf{PUSH}(S, x):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } S.\textit{top} == S.\textit{size} \\
+2 & \quad \textbf{error } \text{``overflow''} \\
+3 & \textbf{else } S.\textit{top} = S.\textit{top} + 1 \\
+4 & \quad S[S.\textit{top}] = x
+\end{array}
+$$
+
+$\textbf{POP}(S):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } \textbf{STACK-EMPTY}(S) \\
+2 & \quad \textbf{error } \text{``underflow''} \\
+3 & \textbf{else } S.\textit{top} = S.\textit{top} - 1 \\
+4 & \quad \textbf{return } S[S.\textit{top} + 1]
+\end{array}
+$$
+
+Similarly, for a queue, it's $\text{QUEUE}$ and $\text{DEQUEUE}$ and the elements in the queue reside in locations $Q.\textit{head}, Q.\textit{head} + 1, \dots, Q.\textit{tail} - 1$.  
+When $Q.\textit{head} = Q.\textit{tail}$, the queue is empty. When $Q.\textit{head} = Q.\textit{tail} + 1$ or both $Q.\textit{head} = 1$ and $Q.\textit{tail} = Q.\textit{size}$, the queue is full, and an attempt to enqueue an element causes the queue to overflow.
+
+$\textbf{ENQUEUE}(Q, x):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } Q.\textit{head} == Q.\textit{tail} + 1 \textbf{ or } (Q.\textit{head} == 1 \textbf{ and } Q.\textit{tail} == Q.\textit{size}) \\
+2 & \quad \textbf{error } \text{``overflow''} \\
+3 & Q[Q.\textit{tail}] = x \\
+4 & \textbf{if } Q.\textit{tail} == Q.\textit{size} \\
+5 & \quad Q.\textit{tail} = 1 \\
+6 & \textbf{else } Q.\textit{tail} = Q.\textit{tail} + 1
+\end{array}
+$$
+
+$\textbf{DEQUEUE}(Q):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } Q.\textit{head} == Q.\textit{tail} \\
+2 & \quad \textbf{error } \text{``underflow''} \\
+3 & x = Q[Q.\textit{head}] \\
+4 & \textbf{if } Q.\textit{head} == Q.\textit{size} \\
+5 & \quad Q.\textit{head} = 1 \\
+6 & \textbf{else } Q.\textit{head} = Q.\textit{head} + 1 \\
+7 & \textbf{return } x
+\end{array}
+$$
+
+
+## Linked Lists
+
+Objects are arranged in a linear order, sometimes called search lists. In a doubly linked list $L$, each 
+element has a key and two pointers: next and prev.
+
+![[linked_lists.png | 1000]]
+
+If $x.prev = \text{NIL}$, the element $x$ has no predecessor and is the first element, or *head*, of the list. If $x.next = \text{NIL}$, the element $x$ has no successor and is the last element, or *tail*, of the list. An attribute $L.head$ points to the first element of the list. If $L.head = \text{NIL}$, the list is empty.  
+
+A list may be singly or doubly linked, sorted or not, and circular or not.
+
+To search takes $\Theta(n)$ time
+
+$\textbf{LIST-SEARCH}(L, k):$
+
+$$
+\begin{array}{ll}
+1 & x = L.\textit{head} \\
+2 & \textbf{while } x \neq \text{NIL} \textbf{ and } x.\textit{key} \neq k \\
+3 & \quad x = x.\textit{next} \\
+4 & \textbf{return } x
+\end{array}
+$$
+
+Prepend, insert and delete take $O(1)$ time 
+
+$\textbf{LIST-PREPEND}(L, x):$
+
+$$
+\begin{array}{ll}
+1 & x.\textit{next} = L.\textit{head} \\
+2 & x.\textit{prev} = \text{NIL} \\
+3 & \textbf{if } L.\textit{head} \neq \text{NIL} \\
+4 & \quad L.\textit{head}.\textit{prev} = x \\
+5 & L.\textit{head} = x
+\end{array}
+$$
+
+$\textbf{LIST-INSERT}(x, y):$
+
+$$
+\begin{array}{ll}
+1 & x.\textit{next} = y.\textit{next} \\
+2 & x.\textit{prev} = y \\
+3 & \textbf{if } y.\textit{next} \neq \text{NIL} \\
+4 & \quad y.\textit{next}.\textit{prev} = x \\
+5 & y.\textit{next} = x
+\end{array}
+$$
+
+$\textbf{LIST-DELETE}(L, x):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{if } x.\textit{prev} \neq \text{NIL} \\
+2 & \quad x.\textit{prev}.\textit{next} = x.\textit{next} \\
+3 & \textbf{else } L.\textit{head} = x.\textit{next} \\
+4 & \textbf{if } x.\textit{next} \neq \text{NIL} \\
+5 & \quad x.\textit{next}.\textit{prev} = x.\textit{prev}
+\end{array}
+$$
+
+
+### Sentinels
+
+Allows us to simplify boundary conditions. In a linked list $L$, the sentinel is an object $L.nil$ that represents $\text{NIL}$ but has all the attributes of the other objects in the list. References to $\text{NIL}$ are replaced by references to the sentinel $L.nil$.  
+When there are many small lists, the extra storage used by their sentinels can represent significant wasted memory.
+
+![[sentinel.png | 1000]]
+
+You should never delete the sentinel $L.nil$ unless you are deleting the entire list.
+The former operations become
+
+$\textbf{LIST-DELETE}'(x):$
+
+$$
+\begin{array}{ll}
+1 & x.\textit{prev}.\textit{next} = x.\textit{next} \\
+2 & x.\textit{next}.\textit{prev} = x.\textit{prev}
+\end{array}
+$$
+
+$\textbf{LIST-INSERT}'(x, y):$
+
+$$
+\begin{array}{ll}
+1 & x.\textit{next} = y.\textit{next} \\
+2 & x.\textit{prev} = y \\
+3 & y.\textit{next}.\textit{prev} = x \\
+4 & y.\textit{next} = x
+\end{array}
+$$
+
+$\textbf{LIST-SEARCH}'(L, k):$
+
+$$
+\begin{array}{ll}
+1 & L.\textit{nil}.\textit{key} = k \quad \text{// store the key in the sentinel to guarantee it is in list} \\
+2 & x = L.\textit{nil}.\textit{next} \quad \text{// start at the head of the list} \\
+3 & \textbf{while } x.\textit{key} \neq k \\
+4 & \quad x = x.\textit{next} \\
+5 & \textbf{if } x == L.\textit{nil} \quad \text{// found } k \text{ in the sentinel} \\
+6 & \quad \textbf{return } \text{NIL} \quad \text{// } k \text{ was not really in the list} \\
+7 & \textbf{else return } x \quad \text{// found } k \text{ in element } x
+\end{array}
+$$
+
+
+## Binary Trees
+
+$p$, $left$, and $right$ to store pointers to the parent, left child, and right child of each node in a binary tree $T$. If $x.p = \text{NIL}$, then $x$ is the root. If node $x$ has no left child, then $x.left = \text{NIL}$, and similarly for the right child. The root of the entire tree $T$ is pointed to by the attribute $T.root$. If $T.root = \text{NIL}$, then the tree is empty.
+
+![[binary_tree.png | 1000]]
+
+To represent a binary tree with an arbitrary number of children using $O(n)$, the **left-child, right sibling representation* is used.
+
+![[arbitrary_children.png | 1000]]
+
+
+# Hash Tables
+
+Is an effective data structure for implementing dictionaries. 
+Searching for an element can takes as long as in a linked list—$\Theta(n)$ time in the worst case—in practice, under reasonable assumptions, the average time is $O(1)$.
+
+Generalizes the simpler notion of an ordinary array.
+
+## Direct-Address Tables
+
+Simple. Works well when the universe $U= \{0, ..., m-1 \}$ of keys is reasonably small. It's denoted $T[0:m-1]$.
+Each position, or **slot**, corresponds to a key in $U$. If $U=\emptyset$, $T[k]=\text{NIL}$. The operations take $O(1)$ time
+
+
+![[direct_tables.png | 1000]]
+
+$\textbf{DIRECT-ADDRESS-SEARCH}(T, k):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{return } T[k]
+\end{array}
+$$
+
+$\textbf{DIRECT-ADDRESS-INSERT}(T, x):$
+
+$$
+\begin{array}{ll}
+1 & T[x.\textit{key}] = x
+\end{array}
+$$
+
+$\textbf{DIRECT-ADDRESS-DELETE}(T, x):$
+
+$$
+\begin{array}{ll}
+1 & T[x.\textit{key}] = \text{NIL}
+\end{array}
+$$
+
+
+## Hash Tables
+
+$U$ may be large or infinite and $K$ may be small relative to $U$. In a hash table, storage requirement reduces to $\Theta(|K|)$, 
+maintaining $O(1)$ for the average-case time.
+
+A **hash function** $h$ is used to compute the slot number from the key $k$. $h$ maps $U$ into the slots of a hash table $T[0 : m - 1]$:
+$ h : U \to \{0, 1, \dots, m - 1\} $.  
+
+Usually $m << |U|$. And we say that $k$ **hashes** to slot $h(k)$, or $h(k)$ is the **hash value** of $k$.
+If $h(k_1)=h(k_2)$, we call this a **collision** and avoiding them is impossible.
+
+![[collision.png | 1000]]
+
+An **Independent Uniform Hashing** is an ideal injective function such that $\forall k \in U$, $h(k)$ is randomly and independently chosen uniformly from $\{ 0, ..., m-1 \}$.  
+
+Collisions can be solved by **chaining**: each slot in the hash table points to the head of a linked list containing all elements that hash to that specific index $j$. If no elements hash to slot $j$, it is set to $\text{NIL}$.
+And worst-case running time for insertion is $O(1)$ as it assumes $x \notin T$.
+
+
+![[chaining.png | 1000]]
+
+$\textbf{CHAINED-HASH-INSERT}(T, x):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{LIST-PREPEND}(T[h(x.\textit{key})], x)
+\end{array}
+$$
+
+$\textbf{CHAINED-HASH-SEARCH}(T, k):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{return } \textbf{LIST-SEARCH}(T[h(k)], k)
+\end{array}
+$$
+
+$\textbf{CHAINED-HASH-DELETE}(T, x):$
+
+$$
+\begin{array}{ll}
+1 & \textbf{LIST-DELETE}(T[h(x.\textit{key})], x)
+\end{array}
+$$
+
+
+Given a hash table $T$ with $m$ slots that stores $n$ elements, we define the *load factor* for $T$ as $\alpha=n/m$.
+
+In the worst-case behavior of hashing with chaining all $n$ keys hash to the same slot, creating a list of length $n$. The worst-case time for searching is thus $\Theta(n)$ plus the time to compute the hash function.  
+
+In a hash table in which collisions are resolved by chaining, an unsuccessful search takes $\Theta(1 + \alpha)$ time on average, under the assumption of **independent uniform hashing**.
+A succesful seach takes the same time on average.
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+Let $n_j$ be the lenght of the list $T[j]$ , $ n = n_0 + n_1 + \cdots + n_{m-1}$ and $E[n_j] = \alpha = n/m$.
+In particular, $E[n_{h(k)}]=\alpha$, the expected number of elements examined in an unsuccesful seach, and the total time required is  $\Theta(1 + \alpha)$
+
+
+Now, let $x_i$ denote the $i$th element inserted into the table, for $i = 1, 2, \dots, n$, and let $k_i = x_i.key$.  
+
+$
+\displaystyle X_{ijq} = \mathrm{I}\{\text{the search is for } x_i,\ h(k_i) = q,\ \text{and } h(k_j) = q\}
+$. Because $\Pr\{\text{the search is for } x_i\} = 1/n$, $\Pr\{h(k_i) = q\} = 1/m$, $\Pr\{h(k_j) = q\} = 1/m$, and these events are all independent, we have that $\Pr\{X_{ijq} = 1\} = 1/nm^2$.
+
+Let 
+$$
+\begin{aligned}
+Y_j &= \mathrm{I}\{x_j \text{ appears in a list prior to the element being searched for}\} \\
+&= \sum_{q=0}^{m-1} \sum_{i=1}^{j-1} X_{ijq}
+\end{aligned}
+$$ 
+and how many elements appear in the list prior to the element being searched for $ \displaystyle Z = \sum_{j=1}^{n} Y_j $.  
+
+Because we must count the element being searched for as well as all those 
+preceding it in its list, we wish to compute
+
+$$
+\begin{aligned}
+E[Z + 1] &= E\left[ 1 + \sum_{j=1}^{n} Y_j \right] \\
+&= 1 + E\left[ \sum_{j=1}^{n} \sum_{q=0}^{m-1} \sum_{i=1}^{j-1} X_{ijq} \right] \\
+&= 1 + E\left[ \sum_{q=0}^{m-1} \sum_{j=1}^{n} \sum_{i=1}^{j-1} X_{ijq} \right] \\
+&= 1 + \sum_{q=0}^{m-1} \sum_{j=1}^{n} \sum_{i=1}^{j-1} E[X_{ijq}] \\
+&= 1 + \sum_{q=0}^{m-1} \sum_{j=1}^{n} \sum_{i=1}^{j-1} \frac{1}{nm^2} \\
+&= 1 + m \cdot \frac{n(n - 1)}{2} \cdot \frac{1}{nm^2} \\
+&= 1 + \frac{n - 1}{2m} \\
+&= 1 + \frac{n}{2m} - \frac{1}{2m} \\
+&= 1 + \frac{\alpha}{2} - \frac{\alpha}{2n}
+\end{aligned}
+$$
+
+Thus, the total time required for a successful search (including the time for computing the hash function) is $\Theta(2 + \alpha/2 - \alpha/2n) = \Theta(1 + \alpha)$.
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+
+This means that if the number of elements in the table is at most proportional to the number of hash-table slots, we have $n = O(m)$ and, consequently, $\alpha = n/m = O(m)/m = O(1)$.  
+
+We can support all dictionary operations in $O(1)$ time on average.
+
+## Hash functions
+
+**Static hashing** try to provide a single fixed hash function that works well on any data (like hashing by division and multiplication). 
+Although static hashing is no longer recommended, the multiplication
+method also provides a good foundation for  
+
+**Random hashing**, or nonstatic hashing, in which a random function is chosen at random from a suitable family of hash functions. (the multiplication method )
+
+The assumption of independent uniform hashing may not be satisfied and the keys might not be drawn independently, they can have a distribution.  
+
+In practice, hash functions are designed to handle keys that are: a short nonnegative integer in a $w$-bit machine word, a short vector of nonnegative integers of a bounded size each (e.g. a (byte) string) which can be of variable length.
+
+
+### Division Method
+
+$ h(k) = k \bmod m $
+
+There is no guarantee that this method provides good average-case
+performance, however, and it may complicate applications since it constrains the
+size of the hash tables to be prime.
+
+## Multiplication Method
+
+Let $A \in (0,1)$, $ h(k) = \lfloor m (k A \bmod 1) \rfloor $, where $k A \bmod 1$ means the fractional part of $kA$, that is, $kA - \lfloor kA \rfloor$.
+
+
