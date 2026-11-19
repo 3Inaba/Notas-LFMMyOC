@@ -1384,8 +1384,97 @@ There is no guarantee that this method provides good average-case
 performance, however, and it may complicate applications since it constrains the
 size of the hash tables to be prime.
 
-## Multiplication Method
+### Multiplication Method
 
 Let $A \in (0,1)$, $ h(k) = \lfloor m (k A \bmod 1) \rfloor $, where $k A \bmod 1$ means the fractional part of $kA$, that is, $kA - \lfloor kA \rfloor$.
 
 
+### The Multiply-Shift Method
+
+In practice, the multiplication method is best in the case where the number of hash-table slots is  $m = 2^\ell$ for some $\ell \in \mathbb{N}$, where $\ell \le w$ and $w$ is the number of bits in a machine word. If you choose a fixed $w$-bit positive integer $a = A \cdot 2^w$, where $0 < A < 1$ as in the multiplication method so that $a$ is in the range $0 < a < 2^w$, you can implement the function on most computers as follows.
+Assuming $k$ fits into a single $w$-bit word.  
+
+When multiplying $k$ by a $w$-bit integer $a$, the $2w$-bit product is split into a high-order word $r_1$ and a low-order word $r_0$ (represented as $r_1 2^w + r_0$), with the resulting $\ell$-bit hash derived from the most significant bits of $r_0$.
+Multiplying two $w$-bit words ($ka$) produces a $2w$-bit result. Taking this modulo $2^w$ discards the high-order $w$ bits ($r_1$), retaining the low-order $w$ bits ($r_0$). Applying a logical right shift of $w - \ell$ bits ($\gg$) moves the $\ell$ most significant bits of $r_0$ into the $\ell$ rightmost positions (equivalent to dividing by $2^{w-\ell}$ and taking the floor), resulting in a value equal to those $\ell$ most significant bits.
+
+
+$$
+h_a(k) = (ka \bmod 2^w) \gg (w - \ell)
+$$
+
+
+![[multiply_shift.png | 1000]]
+
+This method is fast but it doesn’t provide any guarantee of good average-case performance. 
+
+
+## Random Hashing
+
+A particular case is **universal hashing** which can yield provably good
+performance on average when collisions are handled by chaining, no matter which
+keys are chosen.  
+
+Let $\mathcal{H}$ be a finite family of hash functions that map $U$ into $\{0, 1, \dots, m - 1\}$. $\mathcal{H}$ is said to be **universal** if  $\forall \, k_1 \neq k_2 \in U$, the number of hash functions $h \in \mathcal{H}$ for which $h(k_1) = h(k_2)$ is at most $|\mathcal{H}|/m$.
+Every independent uniform random family of hash function is universal, but the
+converse need not be true.  
+
+Using universal hashing and collision resolution by chaining in an initially empty table with $m$ slots, 
+it takes $\Theta(s)$ expected time to handle any sequence of $s$ $\text{INSERT}$, $\text{SEARCH}$, and 
+$\text{DELETE}$ operations containing $n = O(m)$ $\text{INSERT}$ operations.  
+
+Let $h \in \mathcal{H}$ picked uniformly at random. The probabilities are over the picks of $h$.  $\mathcal{H}$  is
+
+* **uniform** if $\forall \, k \in U$ and any slot $q \in \{0, 1, \dots, m - 1\}$, the probability that $h(k) = q$ is $1/m$.
+* **universal** if $\forall k_1 \neq k_2 \in U$, the probability that $h(k_1) = h(k_2)$ is at most $1/m$.
+* **$\epsilon$-universal** if for any distinct keys $k_1$ and $k_2$ in $U$, the probability that $h(k_1) = h(k_2)$ is at most $\epsilon$. Therefore, a universal family of hash functions is also $1/m$-universal.
+* **$d$-independent** if for any distinct keys $k_1, k_2, \dots, k_d$ in $U$ and any slots $q_1, q_2, \dots, q_d$, not necessarily distinct, in $\{0, 1, \dots, m - 1\}$ the probability that $h(k_i) = q_i$ for $i = 1, 2, \dots, d$ is $1/m^d$.
+
+Below are two ways to design universal (or $\epsilon$-universal) family of hash functions. The first is a bit
+easier to prove universal, but the second is newer and faster in practice.
+
+### Number theory 
+
+Let $p \in \mathbb{P} : \{0, ..., m-1\} \subseteq \{0, ..., p-1\}$.  
+
+Given $a \in \mathbb{Z}_p^*$ and $b \in \mathbb{Z}_p$, define $\displaystyle \begin{aligned}
+h_{ab} :  \mathbb{Z}_p &\to  \mathbb{Z}_m \\
+k &\mapsto ((ak + b) \bmod p) \bmod m
+\end{aligned} $. Then, 
+
+$$
+\mathcal{H}_{pm} = \{ h_{ab} : a \in \mathbb{Z}_p^* \text{ and } b \in \mathbb{Z}_p \}
+$$
+
+is universal (and contains p(p-1) hash function)
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+
+Let $k_1 \neq k_2 \in \mathbb{Z}_p$, $h_{ab} \in \mathcal{H}_{pm}$ and $r_1 = (ak_1 + b) \bmod p, r_2 = (ak_2 + b) \bmod p$. 
+$r_1 \neq r_2$ and since $(\mathbb{Z}_p, *)$ is an abelian group, if $(a,b)$ are picked uniformly at random, $(r_1, r_2)$ is equally likely to be any pair of distinct values modulo $p$.
+
+So $\Pr\{h_{ab}(k_1) = h_{ab}(k_2)\} = \Pr\{r_1 \equiv r_2 \pmod m \mid r_1 \neq r_2 \in \mathbb{Z}_p\} $
+
+And, the number of values $r_2$ such that $r_2 \neq r_1$ and $r_2 \equiv r_1 \pmod m$ is at most
+$$
+\begin{aligned}
+\left\lceil \frac{p}{m} \right\rceil - 1 &\le \frac{p + m - 1}{m} - 1 = \frac{p - 1}{m}
+\end{aligned}
+$$
+The probability that $r_2$ collides with $r_1$ when reduced modulo $m$ is at most $((p - 1)/m)/(p - 1) = 1/m$.
+
+Therefore, 
+$$
+\Pr\{h_{ab}(k_1) = h_{ab}(k_2)\} \le 1/m,
+$$
+so that $\mathcal{H}_{pm}$ is indeed universal.
+
+<hr style="height: 3px; border: none; background-color: #a1a1aa;">
+
+### Multiply-Shift Method
+
+This is the method recommended in practice. It is exceptionally efficient and (although we omit the proof) provably $2/m$-universal.
+
+Let $$
+\mathcal{H} = \{ h_a : a \text{ is odd},\ 1 \le a < m,\ \text{and } h_a(k) = (ka \bmod 2^w) \gg (w - \ell) \}
+$$, then $\mathcal{H}$ is $2/m$-universal.
