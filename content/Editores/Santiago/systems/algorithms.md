@@ -1478,3 +1478,57 @@ This is the method recommended in practice. It is exceptionally efficient and (a
 Let $$
 \mathcal{H} = \{ h_a : a \text{ is odd},\ 1 \le a < m,\ \text{and } h_a(k) = (ka \bmod 2^w) \gg (w - \ell) \}
 $$, then $\mathcal{H}$ is $2/m$-universal.
+
+### Hashing long inputs
+
+To hash long or variable-lenght inputs, cryotigraphic hash functions can be used. They are pseudorandom, robust and widely implemented.
+One example is the set SHA-2 designed by the National Security Agency of the US.
+
+## Open Adressing
+
+Is a method for collision reoslution that avoids pointers where the hash function has the form 
+$h : U \times \{0, 1, \dots, m - 1\} \to \{0, 1, \dots, m - 1\} $ such that the *probe sequence* 
+$\langle h(k, 0), h(k, 1), \dots, h(k, m - 1) \rangle \in S_{[[0,m-1]]}$.
+
+To insert no satellite data is assumed, $k$ is identical to the
+element containing key $k$.
+
+$\textbf{HASH-INSERT}(T, k):$
+
+$$
+\begin{array}{ll}
+1 & i = 0 \\
+2 & \textbf{repeat} \\
+3 & \quad q = h(k, i) \\
+4 & \quad \textbf{if } T[q] == \text{NIL} \\
+5 & \quad \quad T[q] = k \\
+6 & \quad \quad \textbf{return } q \\
+7 & \quad \textbf{else } i = i + 1 \\
+8 & \textbf{until } i == m \\
+9 & \textbf{error } \text{"hash table overflow"}
+\end{array}
+$$
+
+<br>
+
+$\textbf{HASH-SEARCH}(T, k):$
+
+$$
+\begin{array}{ll}
+1 & i = 0 \\
+2 & \textbf{repeat} \\
+3 & \quad q = h(k, i) \\
+4 & \quad \textbf{if } T[q] == k \\
+5 & \quad \quad \textbf{return } q \\
+6 & \quad i = i + 1 \\
+7 & \textbf{until } T[q] == \text{NIL} \textbf{ or } i == m \\
+8 & \textbf{return } \text{NIL}
+\end{array}
+$$
+
+Deletion brings issues with searching, so chaining is frequently used if keys must be deleted.
+
+*Independent uniform permutation hashing* assumes the probe sequence of each key is equally likely to be
+any permutation of $ S_{[[0,m-1]]}$. It's difficult to implement and aproximations are used in practice.
+
+
